@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MisTareas</string>
+    <string name="mis_tareas">Mis Tareas</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="imagen_de_fondo">Imagen de fondo</string>
+    <string name="itt">ITT</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="crea_una_cuenta">Crea una cuenta</string>
+    <string name="login">LOGIN</string>
+</resources>

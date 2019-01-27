@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:contentDescription="@string/imagen_de_fondo"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:src="@mipmap/atardecer4g" />-->
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/atardecer4g" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@drawable/gradiente_login" />-->
+
+    <TextView
+        android:id="@+id/titulo"
+        style="@style/etiquetas"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/mis_tareas"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/subtitulo"
+        style="@style/etiquetas"
+        android:layout_below="@id/titulo"
+        android:layout_marginTop="10dp"
+        android:text="@string/itt"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/lineaLayaout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtitulo"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/textInputLayout">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/usuario"
+                style="@style/textInputEditText"
+                android:hint="@string/usuario">
+                <requestFocus />
+            </android.support.design.widget.TextInputEditText>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/textInputLayout">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/password"
+                style="@style/textInputEditText"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/botonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lineaLayaout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/boton"
+        android:text="@string/login"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:onClick="login"/>
+
+    <TextView
+        android:id="@+id/cuentaNueva"
+        style="@style/etiquetas"
+        android:layout_below="@id/botonLogin"
+        android:layout_marginTop="16dp"
+        android:text="@string/crea_una_cuenta"
+        android:textSize="20sp"
+        android:onClick="crearCuenta"/>
+
+</RelativeLayout>
