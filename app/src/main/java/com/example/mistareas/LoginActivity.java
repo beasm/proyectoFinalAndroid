@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user.isEmpty() && pwd.isEmpty()) {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle("Registro")
-                    .setMessage("Introduce tu usuario y contraseña en la venta principal y vuelve a pulsar este botón")
+                    .setMessage("Introduce tu usuario y contraseña en la ventana principal y vuelve a pulsar este botón")
                     .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
