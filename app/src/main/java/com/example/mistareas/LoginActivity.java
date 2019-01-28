@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.mistareas.db.ControladorDB_User;
+import com.example.mistareas.dbuser.ControladorDB_User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user.isEmpty() && pwd.isEmpty()) {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle("Registro")
-                    .setMessage("Introduce tu usuario y contrasena en la venta principal y vuelve a pulsar este boton")
+                    .setMessage("Introduce tu usuario y contraseña en la venta principal y vuelve a pulsar este botón")
                     .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
