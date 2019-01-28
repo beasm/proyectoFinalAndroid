@@ -8,4 +8,7 @@
     <string name="password">Contraseña</string>
     <string name="crea_una_cuenta">Crea una cuenta</string>
     <string name="login">LOGIN</string>
+    <string name="terminado">Done</string>
+    <string name="todo">TODO</string>
+    <string name="icono">Icono</string>
 </resources>

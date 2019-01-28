@@ -25,20 +25,30 @@
         <!--android:background="@drawable/gradiente_login" />-->
 
     <TextView
-        android:id="@+id/titulo"
+        android:id="@+id/titulo_login"
         style="@style/etiquetas"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:text="@string/mis_tareas"
         android:textSize="40sp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/subtitulo"
         style="@style/etiquetas"
-        android:layout_below="@id/titulo"
-        android:layout_marginTop="10dp"
-        android:text="@string/itt"
-        android:textSize="20sp" />
+        android:layout_width="128dp"
+        android:layout_height="112dp"
+        android:layout_below="@id/titulo_login"
+        android:layout_marginTop="6dp"
+        android:src="@mipmap/icono_app" />
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/subtitulo"-->
+        <!--style="@style/etiquetas"-->
+        <!--android:layout_below="@id/titulo"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="@string/itt"-->
+        <!--android:textSize="20sp" />-->
 
     <LinearLayout
         android:id="@+id/lineaLayaout"
@@ -46,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/subtitulo"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="16dp"
         android:background="@android:color/white"
         android:orientation="vertical"

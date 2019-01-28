@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <translate
-        android:duration="4000"
-        android:fromYDelta="400"
+        android:duration="3000"
+        android:fromXDelta="-1500"
         />
+    <!--<translate-->
+        <!--android:duration="4000"-->
+        <!--android:fromXDelta="400"-->
+        <!--android:startOffset="2000"-->
+        <!--/>-->
     <alpha
-        android:duration="2000"
-        android:fromAlpha="0"
+        android:startOffset="3000"
+        android:duration="3000"
+        android:fromAlpha="0.5"
         android:toAlpha="1"
         />
 </set>

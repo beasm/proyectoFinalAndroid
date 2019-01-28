@@ -2,10 +2,11 @@ package com.example.mistareas;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity implements Animation.AnimationListener {
@@ -16,13 +17,15 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
         setContentView(R.layout.activity_splash);
 
         getSupportActionBar().hide();
+        
+        TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash);
 
-//        Typeface tf_miFuente = Typeface.createFromAsset(getAssets(),"fuente.ttf");
-        TextView tv_titulo = (TextView) findViewById(R.id.titulo);
-//        tv_titulo.setTypeface(tf_miFuente);
-
-        Animation anim = AnimationUtils.loadAnimation(this,R.anim.animacion);
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion);
         tv_titulo.startAnimation(anim);
+
+        ImageView tv_imagen = (ImageView) findViewById(R.id.imagen_splash);
+        Animation anim_imagen = AnimationUtils.loadAnimation(this, R.anim.animacion_imagen);
+        tv_imagen.startAnimation(anim_imagen);
 
         anim.setAnimationListener(this);
     }
@@ -34,7 +37,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
 
