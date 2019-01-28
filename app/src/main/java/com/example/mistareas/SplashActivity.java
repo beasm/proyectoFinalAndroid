@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
         setContentView(R.layout.activity_splash);
 
         getSupportActionBar().hide();
-        
+
         TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion);
