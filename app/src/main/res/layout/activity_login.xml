@@ -6,23 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:contentDescription="@string/imagen_de_fondo"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:src="@mipmap/atardecer4g" />-->
-
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/fondo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@mipmap/atardecer4g" />
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@drawable/gradiente_login" />-->
+
 
     <TextView
         android:id="@+id/titulo_login"
@@ -41,14 +31,6 @@
         android:layout_marginTop="6dp"
         android:src="@mipmap/icono_app" />
 
-
-    <!--<TextView-->
-        <!--android:id="@+id/subtitulo"-->
-        <!--style="@style/etiquetas"-->
-        <!--android:layout_below="@id/titulo"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="@string/itt"-->
-        <!--android:textSize="20sp" />-->
 
     <LinearLayout
         android:id="@+id/lineaLayaout"
