@@ -1,6 +1,7 @@
 package com.example.mistareas;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +30,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         db = new ControladorDB(this);
         listaTareas = findViewById(R.id.listaTareas);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         actualizarUI();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        return true;
     }
 
     @Override
@@ -40,24 +51,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        final EditText cajaTexto = new EditText(this);
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Nueva Tarea")
-                .setMessage("Qué quieres hacer a continuación?")
-                .setView(cajaTexto)
-                .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String tarea = cajaTexto.getText().toString();
-                        db.addTarea(tarea);
-                        actualizarUI();
-                        callToast("Tarea añadida");
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .create();
-        dialog.show();
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.nuevaTarea:
+                final EditText cajaTexto = new EditText(this);
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Nueva Tarea")
+                        .setMessage("Qué quieres hacer a continuación?")
+                        .setView(cajaTexto)
+                        .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String tarea = cajaTexto.getText().toString();
+                                db.addTarea(tarea);
+                                actualizarUI();
+                                callToast("Tarea añadida");
+                            }
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .create();
+                dialog.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void actualizarUI() {

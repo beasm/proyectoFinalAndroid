@@ -24,32 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void crearCuenta(View view) {
-//        Toast toast = Toast.makeText(this, "Funcionalidad no implementada", Toast.LENGTH_LONG);
-//        toast.show();
-        TextInputEditText tiet_usuario = (TextInputEditText) findViewById(R.id.usuario);
-        TextInputEditText tiet_password = (TextInputEditText) findViewById(R.id.password);
-        String user = tiet_usuario.getText().toString();
-        String pwd = tiet_password.getText().toString();
-        if (user.isEmpty() && pwd.isEmpty()) {
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("Registro")
-                    .setMessage("Introduce tu usuario y contraseña en la ventana principal y vuelve a pulsar este botón")
-                    .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    })
-                    .setNegativeButton("Cancelar", null)
-                    .create();
-            dialog.show();
-        } else {
-            db.addTarea(user,pwd);
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
+        Intent intent = new Intent(this, CreateLoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void login(View view) {
@@ -57,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         TextInputEditText tiet_password = (TextInputEditText) findViewById(R.id.password);
 
         if (db.validarLogin(tiet_usuario.getText().toString(), tiet_password.getText().toString())) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
             finish();
         } else {

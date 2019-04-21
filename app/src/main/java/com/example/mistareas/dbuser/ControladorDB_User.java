@@ -40,4 +40,15 @@ public class ControladorDB_User extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public boolean existeLogin(String nombre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID FROM USUARIO WHERE NOMBRE = ?", new String[]{nombre});
+        int regs = cursor.getCount();
+        if (regs == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
