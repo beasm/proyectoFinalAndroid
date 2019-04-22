@@ -1,4 +1,4 @@
-package com.example.mistareas.db;
+package com.example.proyectofinalandroid.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ControladorDB extends SQLiteOpenHelper {
     public ControladorDB(Context context) {
-        super(context, "com.example.mistareas.db", null, 1);
+        super(context, "com.example.proyectofinalandroid.db", null, 1);
     }
 
     @Override

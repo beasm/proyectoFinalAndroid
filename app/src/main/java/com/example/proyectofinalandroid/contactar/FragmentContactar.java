@@ -1,4 +1,4 @@
-package com.example.mistareas.contactar;
+package com.example.proyectofinalandroid.contactar;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.mistareas.R;
+import com.example.proyectofinalandroid.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;

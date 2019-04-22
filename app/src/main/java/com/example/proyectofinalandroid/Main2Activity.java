@@ -1,4 +1,4 @@
-package com.example.mistareas;
+package com.example.proyectofinalandroid;
 
 import android.Manifest;
 import android.content.Intent;
@@ -25,9 +25,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mistareas.Eventos.FragmentEventos;
-import com.example.mistareas.contactar.FragmentContactar;
-import com.example.mistareas.noticias.FragmentNoticias;
+import com.example.proyectofinalandroid.Eventos.FragmentEventos;
+import com.example.proyectofinalandroid.contactar.FragmentContactar;
+import com.example.proyectofinalandroid.noticias.FragmentNoticias;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

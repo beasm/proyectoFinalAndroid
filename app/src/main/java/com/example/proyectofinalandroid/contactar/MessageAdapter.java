@@ -1,9 +1,9 @@
-package com.example.mistareas.contactar;
+package com.example.proyectofinalandroid.contactar;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.mistareas.R;
+import com.example.proyectofinalandroid.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.FirebaseDatabase;

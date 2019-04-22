@@ -1,4 +1,4 @@
-package com.example.mistareas.dbuser;
+package com.example.proyectofinalandroid.dbuser;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ControladorDB_User extends SQLiteOpenHelper {
     public ControladorDB_User(Context context) {
-        super(context, "com.example.mistareas.dbuser", null, 1);
+        super(context, "com.example.proyectofinalandroid.dbuser", null, 1);
     }
 
     @Override

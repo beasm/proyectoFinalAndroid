@@ -1,4 +1,4 @@
-package com.example.mistareas;
+package com.example.proyectofinalandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mistareas.db.ControladorDB;
+import com.example.proyectofinalandroid.db.ControladorDB;
 
 public class MainActivity extends AppCompatActivity {
 

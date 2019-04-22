@@ -1,4 +1,4 @@
-package com.example.mistareas;
+package com.example.proyectofinalandroid;
 
 import org.junit.Test;
 

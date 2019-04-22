@@ -1,4 +1,4 @@
-package com.example.mistareas.Eventos;
+package com.example.proyectofinalandroid.Eventos;
 
 import java.util.Date;
 

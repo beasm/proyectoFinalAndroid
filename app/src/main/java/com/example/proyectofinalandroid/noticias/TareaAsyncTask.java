@@ -1,4 +1,4 @@
-package com.example.mistareas.noticias;
+package com.example.proyectofinalandroid.noticias;
 
 import java.io.BufferedInputStream;
 import java.lang.ref.WeakReference;

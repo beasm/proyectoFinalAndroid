@@ -22,7 +22,7 @@
         android:src="@mipmap/pencil"
         android:layout_toLeftOf="@id/button_delete"
         android:layout_marginRight="20dp"
-        android:onClick="editarTarea"/>
+        android:contentDescription="TODO" android:onClick="editarTarea"/>
 
     <ImageView
         android:id="@+id/button_delete"
@@ -30,5 +30,5 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/trashcan"
         android:layout_alignParentRight="true"
-        android:onClick="borrarTarea"/>
+        android:contentDescription="TODO" android:onClick="borrarTarea"/>
 </RelativeLayout>

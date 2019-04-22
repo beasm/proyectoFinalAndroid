@@ -1,4 +1,4 @@
-package com.example.mistareas;
+package com.example.proyectofinalandroid;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mistareas", appContext.getPackageName());
+        assertEquals("com.example.proyectofinalandroid", appContext.getPackageName());
     }
 }

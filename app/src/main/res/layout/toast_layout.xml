@@ -12,7 +12,7 @@
         android:id="@+id/imgIcono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/info" />
+        android:contentDescription="TODO" android:src="@mipmap/info" />
 
     <TextView
         android:id="@+id/txtMensaje"

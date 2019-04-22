@@ -1,4 +1,4 @@
-package com.example.mistareas;
+package com.example.proyectofinalandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.mistareas.dbuser.ControladorDB_User;
+import com.example.proyectofinalandroid.dbuser.ControladorDB_User;
 
 public class CreateLoginActivity extends AppCompatActivity {
 
