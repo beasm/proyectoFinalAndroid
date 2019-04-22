@@ -14,23 +14,23 @@
         android:roundIcon="@mipmap/icono_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.proyectofinalandroid.Main2Activity" >
+        <activity android:name=".Main2Activity" >
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.proyectofinalandroid.SplashActivity">
+        <activity android:name=".SplashActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name="com.example.proyectofinalandroid.LoginActivity" />
-        <activity android:name="com.example.proyectofinalandroid.CreateLoginActivity" />
-        <activity android:name="com.example.proyectofinalandroid.MainActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CreateLoginActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
