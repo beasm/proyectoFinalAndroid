@@ -76,7 +76,7 @@ public class Main2Activity extends AppCompatActivity
             // User is already signed in. Therefore, display
             // a welcome Toast
             Toast.makeText(this,
-                    "Welcome " + FirebaseAuth.getInstance()
+                    "Bienvenido " + FirebaseAuth.getInstance()
                             .getCurrentUser()
                             .getDisplayName(),
                     Toast.LENGTH_LONG)
@@ -86,7 +86,7 @@ public class Main2Activity extends AppCompatActivity
         if (isDownloadManagerAvailable()) {
             checkSelfPermission();
         } else {
-            Toast.makeText(this, "Download manager is not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "El gestor de descargas no está disponible", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -119,7 +119,7 @@ public class Main2Activity extends AppCompatActivity
 
                 } else {
                     // permission denied!
-                    Toast.makeText(this, "Please give permissions ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Por favor proporcion permisos", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -164,7 +164,7 @@ public class Main2Activity extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(Main2Activity.this,
-                                    "You have been signed out.",
+                                    "Desconectado.",
                                     Toast.LENGTH_LONG)
                                     .show();
 
@@ -197,11 +197,12 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_contactar) {
             fragment = new FragmentContactar();
             title = "Foro";
-        } else if (id == R.id.nav_desconectar) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
         }
+//        else if (id == R.id.nav_desconectar) {
+//            Intent intent = new Intent(this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -242,13 +243,13 @@ public class Main2Activity extends AppCompatActivity
         if (requestCode == SIGN_IN_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this,
-                        "Successfully signed in. Welcome!",
+                        "Ha iniciado sesión correctamente. Bienvenido!",
                         Toast.LENGTH_LONG)
                         .show();
 //                displayChatMessages();
             } else {
                 Toast.makeText(this,
-                        "We couldn't sign you in. Please try again later.",
+                        "No pudimos iniciar sesión. Inténtalo de nuevo más tarde.",
                         Toast.LENGTH_LONG)
                         .show();
 

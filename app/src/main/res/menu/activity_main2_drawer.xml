@@ -18,17 +18,17 @@
             android:title="Descargas" />
         <item
             android:id="@+id/nav_contactar"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_send"
             android:title="Foro" />
     </group>
 
-    <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_desconectar"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Desconectar" />
-        </menu>
-    </item>
+    <!--<item android:title="">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_desconectar"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Desconectar" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

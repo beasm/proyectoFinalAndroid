@@ -1,23 +1,33 @@
 package com.example.proyectofinalandroid.contactar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.proyectofinalandroid.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FragmentContactar extends Fragment {
 
+    private String chats = "foro";
     private FirebaseListAdapter<ChatMessage> adapter;
     private ListView listOfMessages;
     private FloatingActionButton fab;
@@ -29,8 +39,16 @@ public class FragmentContactar extends Fragment {
         // Required empty public constructor
     }
 
+    public void setChats(String chats) {
+        this.chats = chats;
+    }
+
     private void displayChatMessages() {
-        adapter = new MessageAdapter(this);
+        if (chats.equals("foro")) {
+            adapter = new TodosForos(this, chats);
+        } else {
+            adapter = new MessageAdapterForo(this, chats);
+        }
         listOfMessages.setAdapter(adapter);
     }
 
@@ -38,26 +56,59 @@ public class FragmentContactar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_contactar, container, false);
-        fab = view.findViewById(R.id.fab);
-        input = view.findViewById(R.id.input);
-        listOfMessages = view.findViewById(R.id.list_of_messages);
-        displayChatMessages();
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!input.getText().toString().trim().equals("")) {
-                    FirebaseDatabase.getInstance()
-                            .getReference("chats")
-                            .push()
-                            .setValue(new ChatMessage(input.getText().toString(),
-                                    FirebaseAuth.getInstance()
-                                            .getCurrentUser()
-                                            .getDisplayName())
-                            );
-                    input.setText("");
+        View view;
+        if (chats.equals("foro")) {
+            view = inflater.inflate(R.layout.fragment_foro, container, false);
+            listOfMessages = view.findViewById(R.id.list_of_messages);
+            displayChatMessages();
+        } else {
+            view = inflater.inflate(R.layout.fragment_contactar, container, false);
+            fab = view.findViewById(R.id.fab);
+            input = view.findViewById(R.id.input);
+            listOfMessages = view.findViewById(R.id.list_of_messages);
+            displayChatMessages();
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!input.getText().toString().trim().equals("")) {
+                        FirebaseDatabase.getInstance()
+                                .getReference(chats)
+                                .push()
+                                .setValue(new ChatMessage(input.getText().toString(),
+                                        FirebaseAuth.getInstance()
+                                                .getCurrentUser()
+                                                .getDisplayName())
+                                );
+                        input.setText("");
+                    }
                 }
+            });
+        }
+
+        listOfMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DatabaseReference itemRef = adapter.getRef(position);
+                itemRef.child("messageUser").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String value = dataSnapshot.getValue(String.class);
+                        FragmentContactar fragment = new FragmentContactar();
+                        FragmentTransaction ft = ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction();
+//                        ft.replace(R.id.content_frame, fragment);
+                        fragment.setChats(value);
+                        ft.replace(R.id.content_frame, fragment);
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        ft.commit();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
+
             }
         });
         return view;

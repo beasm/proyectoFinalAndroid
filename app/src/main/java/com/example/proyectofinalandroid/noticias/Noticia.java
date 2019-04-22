@@ -7,15 +7,8 @@ public class Noticia {
     private String noticiasContenido;
     private String noticiasTitulo;
     private String noticiasUrl;
+    private String noticiasImagen;
     private long noticiasTime;
-
-    public String getNoticiasUrl() {
-        return noticiasUrl;
-    }
-
-    public void setNoticiasUrl(String noticiasUrl) {
-        this.noticiasUrl = noticiasUrl;
-    }
 
     public Noticia(String noticiasContenido, String noticiasTitulo) {
         this.noticiasContenido = noticiasContenido;
@@ -52,5 +45,21 @@ public class Noticia {
 
     public void setNoticiasTime(long noticiasTime) {
         this.noticiasTime = noticiasTime;
+    }
+
+    public String getNoticiasImagen() {
+        return noticiasImagen;
+    }
+
+    public void setNoticiasImagen(String noticiasImagen) {
+        this.noticiasImagen = noticiasImagen;
+    }
+
+    public String getNoticiasUrl() {
+        return noticiasUrl;
+    }
+
+    public void setNoticiasUrl(String noticiasUrl) {
+        this.noticiasUrl = noticiasUrl;
     }
 }

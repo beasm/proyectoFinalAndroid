@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class FragmentNoticias extends Fragment {
     private FloatingActionButton fab_noticias;
     private EditText input_noticias;
     private Context mContext;
-
+//    private TareaAsyncTask tareasynctask;
     private OnFragmentInteractionListener mListener;
 
     public FragmentNoticias() {
@@ -51,6 +52,7 @@ public class FragmentNoticias extends Fragment {
                 TextView noticiasTitulo = (TextView)v.findViewById(R.id.noticias_titulo);
 //                TextView noticiasTime = (TextView)v.findViewById(R.id.noticias_time);
 //                TextView noticiasUrl = (TextView)v.findViewById(R.id.noticias_url);
+                ImageView imgAA  = v.findViewById(R.id.imagen_noticia);
 
                 // Set their text
                 noticiasContenido.setText(model.getNoticiasContenido());
@@ -60,6 +62,9 @@ public class FragmentNoticias extends Fragment {
                 // Format the date before showing it
 //                noticiasTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
 //                        model.getNoticiasTime()));
+
+                TareaAsyncTask tareasynctask = new TareaAsyncTask(imgAA);
+                tareasynctask.execute(model.getNoticiasImagen());
             }
 
         };

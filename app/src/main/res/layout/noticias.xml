@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/imagen_noticia"
+        android:layout_width="match_parent"
+        android:layout_height="212dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/icono"
+        />
 
     <TextView
+        android:id="@+id/noticias_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/imagen_noticia"
         android:layout_alignParentStart="true"
-        android:id="@+id/noticias_titulo"
-        android:textStyle="normal|bold"
-        android:textSize="28sp"/>
+        android:textSize="28sp"
+        android:textStyle="normal|bold" />
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/noticias_titulo"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:id="@+id/noticias_time" />-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/noticias_titulo"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:id="@+id/noticias_time" />-->
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/noticias_time"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:id="@+id/noticias_url" />-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/noticias_time"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:id="@+id/noticias_url" />-->
 
     <TextView
+        android:id="@+id/noticias_contenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/noticias_titulo"
         android:layout_alignParentStart="true"
         android:layout_marginTop="5dp"
-        android:id="@+id/noticias_contenido"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp" />
 </RelativeLayout>

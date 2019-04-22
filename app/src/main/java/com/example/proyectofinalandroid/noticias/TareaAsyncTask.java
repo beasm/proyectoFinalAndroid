@@ -63,16 +63,16 @@ public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
     public void onPostExecute(Bitmap bitmap)
     {
         try{
-            if(isCancelled())
-            {
-                bitmap = null;
-            }
+//            if(isCancelled())
+//            {
+//                bitmap = null;
+//            }
             if (imageRef != null) {
                 ImageView imageView = (ImageView) imageRef.get();
                 if (imageView != null && bitmap != null) {
                     imageView.setImageBitmap(bitmap);
                 } else {
-                    Log.e("Error en onPostExecute: ", "imageView or bitmap");
+                    Log.e("Error en onPostExecute ", "imageView or bitmap");
                 }
             }
         }catch(Exception ex)
