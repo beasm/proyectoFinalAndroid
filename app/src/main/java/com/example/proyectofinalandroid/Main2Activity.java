@@ -63,6 +63,7 @@ public class Main2Activity extends AppCompatActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, new FragmentEventos());
         ft.commit();
+        getSupportActionBar().setTitle("Eventos");
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             // Start sign in/sign up activity
@@ -83,18 +84,8 @@ public class Main2Activity extends AppCompatActivity
                     .show();
         }
 
-        if (isDownloadManagerAvailable()) {
-            checkSelfPermission();
-        } else {
-            Toast.makeText(this, "El gestor de descargas no está disponible", Toast.LENGTH_LONG).show();
-        }
-    }
+        checkSelfPermission();
 
-    private static boolean isDownloadManagerAvailable() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            return true;
-        }
-        return false;
     }
 
     private void checkSelfPermission() {
@@ -105,7 +96,6 @@ public class Main2Activity extends AppCompatActivity
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_CODE);
-
         }
     }
 
@@ -183,7 +173,7 @@ public class Main2Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
-        String title = getString(R.string.app_name);
+        String title = "";
 
         if (id == R.id.nav_eventos) {
             fragment = new FragmentEventos();
@@ -224,15 +214,10 @@ public class Main2Activity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        Toast toast2 = new Toast(getApplicationContext());
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.lytLayout));
-        TextView txtMsg = (TextView) layout.findViewById(R.id.txtMensaje);
-        txtMsg.setText(getSupportActionBar().getTitle());
-        toast2.setDuration(Toast.LENGTH_SHORT);
-        toast2.setView(layout);
-        toast2.show();
-        ;
+//        Toast.makeText(this,
+//                "onFragmentInteraction",
+//                Toast.LENGTH_LONG)
+//                .show();
     }
 
     @Override
