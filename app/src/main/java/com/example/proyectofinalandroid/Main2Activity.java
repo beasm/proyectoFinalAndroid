@@ -46,25 +46,7 @@ public class Main2Activity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, new FragmentEventos());
-        ft.commit();
-        getSupportActionBar().setTitle("Eventos");
-
+        checkSelfPermission();
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             // Start sign in/sign up activity
             startActivityForResult(
@@ -83,8 +65,23 @@ public class Main2Activity extends AppCompatActivity
                     Toast.LENGTH_LONG)
                     .show();
         }
+        setContentView(R.layout.activity_main2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        checkSelfPermission();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, new FragmentEventos());
+        ft.commit();
+        getSupportActionBar().setTitle("Eventos");
 
     }
 
@@ -109,7 +106,7 @@ public class Main2Activity extends AppCompatActivity
 
                 } else {
                     // permission denied!
-                    Toast.makeText(this, "Por favor proporcion permisos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Por favor proporciona permisos", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -188,11 +185,6 @@ public class Main2Activity extends AppCompatActivity
             fragment = new FragmentContactar();
             title = "Foro";
         }
-//        else if (id == R.id.nav_desconectar) {
-//            Intent intent = new Intent(this, LoginActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -214,10 +206,7 @@ public class Main2Activity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-//        Toast.makeText(this,
-//                "onFragmentInteraction",
-//                Toast.LENGTH_LONG)
-//                .show();
+
     }
 
     @Override
@@ -231,7 +220,7 @@ public class Main2Activity extends AppCompatActivity
                         "Ha iniciado sesión correctamente. Bienvenido!",
                         Toast.LENGTH_LONG)
                         .show();
-//                displayChatMessages();
+
             } else {
                 Toast.makeText(this,
                         "No pudimos iniciar sesión. Inténtalo de nuevo más tarde.",

@@ -10,40 +10,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:text="Descarga nuestra app"
+        android:text="@string/descarga_movil_string"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/descripcion_descargas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titulo_descargas"
+        android:layout_marginTop="20sp"
+        android:text="Haz click en la imagen para iniciar la descarga"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imagen_descargas"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:layout_below="@id/titulo_descargas"
+        android:layout_height="212dp"
+        android:layout_below="@id/descripcion_descargas"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:contentDescription="@string/icono"
-        android:src="@mipmap/icono_app" />
+        android:src="@drawable/juego_online" />
 
-    <TextView
-        android:id="@+id/titulo_juego_online"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:text="Juega a nuestra version online"
-        android:layout_below="@id/imagen_descargas"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/titulo_juego_online"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20sp"-->
+        <!--android:text="@string/juegao_online_string"-->
+        <!--android:layout_below="@id/imagen_descargas"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="40sp" />-->
 
-    <ImageView
-        android:id="@+id/imagen_juego_online"
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:layout_below="@id/titulo_juego_online"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:contentDescription="@string/icono"
-        android:src="@mipmap/icono_app" />
+    <!--<ImageView-->
+        <!--android:id="@+id/imagen_juego_online"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="112dp"-->
+        <!--android:layout_below="@id/titulo_juego_online"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:contentDescription="@string/icono"-->
+        <!--android:src="@mipmap/icono_app" />-->
 
 </RelativeLayout>

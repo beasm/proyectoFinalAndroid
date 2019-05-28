@@ -65,15 +65,15 @@ public class FragmentDescargas extends Fragment {
             }
         });
 
-        final ImageView imagen_juego_online = view.findViewById(R.id.imagen_juego_online);
-        imagen_juego_online.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_TO_ONLINE));
-                mContext.startActivity(browserIntent);
-            }
-        });
+//        final ImageView imagen_juego_online = view.findViewById(R.id.imagen_juego_online);
+//        imagen_juego_online.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_TO_ONLINE));
+//                mContext.startActivity(browserIntent);
+//            }
+//        });
         return view;
     }
 
