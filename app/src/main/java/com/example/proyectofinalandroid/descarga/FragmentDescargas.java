@@ -1,4 +1,4 @@
-package com.example.proyectofinalandroid;
+package com.example.proyectofinalandroid.descarga;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.proyectofinalandroid.R;
 
 public class FragmentDescargas extends Fragment {
     private static final String URL_TO_DOWNLOAD = "http://192.168.0.38:2000/Proyecto/juego/android.apk";

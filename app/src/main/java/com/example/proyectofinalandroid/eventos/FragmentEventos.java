@@ -1,4 +1,4 @@
-package com.example.proyectofinalandroid.Eventos;
+package com.example.proyectofinalandroid.eventos;
 
 import android.content.Context;
 import android.content.Intent;
