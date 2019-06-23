@@ -29,7 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Main2Activity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         FragmentEventos.OnFragmentInteractionListener,
         FragmentDescargas.OnFragmentInteractionListener,
@@ -134,7 +134,7 @@ public class Main2Activity extends AppCompatActivity
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(Main2Activity.this,
+                            Toast.makeText(MainActivity.this,
                                     "Desconectado.",
                                     Toast.LENGTH_LONG)
                                     .show();
