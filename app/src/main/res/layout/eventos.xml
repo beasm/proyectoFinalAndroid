@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <!-- Titulo de los distintos eventos -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
         android:textStyle="normal|bold"
         android:textSize="28sp"/>
 
+    <!-- Contenidos de los distintos eventos -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,6 +20,7 @@
         android:id="@+id/eventos_contenido"
         android:textSize="18sp" />
 
+    <!-- Fecha de los distintos eventos -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +31,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp" />
 
+    <!-- Lugar de los distintos eventos -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -10,9 +10,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MessageAdapterForo extends FirebaseListAdapter<ChatMessage> {
 
-    private FragmentContactar activity;
+    private FragmentForo activity;
 
-    public MessageAdapterForo(FragmentContactar activity, String chats) {
+    public MessageAdapterForo(FragmentForo activity, String chats) {
         super(new FirebaseListOptions.Builder<ChatMessage>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child(chats), ChatMessage.class)
                 .setLayout(R.layout.message)

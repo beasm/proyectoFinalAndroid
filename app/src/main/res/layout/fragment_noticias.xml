@@ -8,32 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:clickable="true"-->
-        <!--android:src="@drawable/ic_menu_send"-->
-        <!--android:id="@+id/fab_noticias"-->
-        <!--android:tint="@android:color/white"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--app:fabSize="mini" />-->
-
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_toLeftOf="@id/fab_noticias"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentStart="true">-->
-
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Input"-->
-            <!--android:id="@+id/input_noticias"-->
-            <!--/>-->
-    <!--</android.support.design.widget.TextInputLayout>-->
-
+    <!-- lista de las noticias -->
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

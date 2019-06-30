@@ -1,7 +1,6 @@
 package com.example.proyectofinalandroid.contactar;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class FragmentContactar extends Fragment {
+public class FragmentForo extends Fragment {
 
     private String chats = "foro";
     private FirebaseListAdapter<ChatMessage> adapter;
@@ -35,7 +34,7 @@ public class FragmentContactar extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentContactar() {
+    public FragmentForo() {
         // Required empty public constructor
     }
 
@@ -93,7 +92,7 @@ public class FragmentContactar extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String value = dataSnapshot.getValue(String.class);
-                        FragmentContactar fragment = new FragmentContactar();
+                        FragmentForo fragment = new FragmentForo();
                         FragmentTransaction ft = ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction();
 //                        ft.replace(R.id.content_frame, fragment);
                         fragment.setChats(value);

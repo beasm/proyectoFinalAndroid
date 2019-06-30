@@ -5,28 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
+    <!-- se define el gradiente del splash -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradiente" />
 
+    <!-- titulo del splash -->
     <TextView
         android:id="@+id/titulo_splash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="40sp"
         android:text="@string/mis_tareas"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="60sp" />
 
+    <!-- Imagen del splash -->
     <ImageView
         android:id="@+id/imagen_splash"
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:layout_below="@id/titulo_splash"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="150dp"
         android:contentDescription="@string/icono"
         android:src="@mipmap/icono_app" />
 

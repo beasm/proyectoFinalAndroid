@@ -1,5 +1,4 @@
 package com.example.proyectofinalandroid.contactar;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,9 +9,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class TodosForos extends FirebaseListAdapter<ChatMessage> {
 
-    private FragmentContactar activity;
+    private FragmentForo activity;
 
-    public TodosForos(FragmentContactar activity, String chats) {
+    public TodosForos(FragmentForo activity, String chats) {
         super(new FirebaseListOptions.Builder<ChatMessage>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child(chats), ChatMessage.class)
                 .setLayout(R.layout.foros)

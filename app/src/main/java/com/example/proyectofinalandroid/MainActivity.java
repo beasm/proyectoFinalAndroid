@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.example.proyectofinalandroid.descarga.FragmentDescargas;
 import com.example.proyectofinalandroid.eventos.FragmentEventos;
-import com.example.proyectofinalandroid.contactar.FragmentContactar;
+import com.example.proyectofinalandroid.contactar.FragmentForo;
 import com.example.proyectofinalandroid.noticias.FragmentNoticias;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         FragmentEventos.OnFragmentInteractionListener,
         FragmentDescargas.OnFragmentInteractionListener,
-        FragmentContactar.OnFragmentInteractionListener,
+        FragmentForo.OnFragmentInteractionListener,
         FragmentNoticias.OnFragmentInteractionListener {
 
     private static final int SIGN_IN_REQUEST_CODE = 200;
@@ -42,34 +42,37 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_main); // se define el xml de la actividad
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // se busca el toolbar en el xml
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout); // se busca drawer_layout en el xml
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close); // se define la barra de tareas de la navegación
+        drawer.addDrawerListener(toggle); // se añade el escuchador de eventos
+        toggle.syncState(); // se sincroniza
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            // Start sign in/sign up activity
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); //se busca la navegación en el xml
+        navigationView.setNavigationItemSelectedListener(this); // se asigna el escuchador
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // si el usuario no esta logeado
+            // Se inicia la activida de iniciar sesión o el registro
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .build(),
                     SIGN_IN_REQUEST_CODE
             );
-        } else {
-            // User is already signed in. Therefore, display
-            // a welcome Toast
+        } else { // si el usuario esta logeado
+
+            // Muestra el mensaje de Bienvenido
             Toast.makeText(this,
                     "Bienvenido " + FirebaseAuth.getInstance()
                             .getCurrentUser()
                             .getDisplayName(),
                     Toast.LENGTH_LONG)
                     .show();
+
+            // se carga la pagina de Eventos
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, new FragmentEventos());
             ft.commit();
@@ -77,37 +80,41 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * metodo que comprueba si los permisos para escribir en la memoria
+     */
     private void checkSelfPermission() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED) { // si no tiene los permisos
 
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    REQUEST_CODE);
+                    REQUEST_CODE); // pide los permisos de escritura
         }
     }
 
+    /**
+     * metodo que comprueba si los permisos se han concedido
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted! Do the work
-
-                } else {
-                    // permission denied!
-                    Toast.makeText(this, "Por favor proporciona permisos", Toast.LENGTH_LONG).show();
-                }
+        if (requestCode == REQUEST_CODE) {
+            // Si se cancela la solicitud, el array estara vacio.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // si se concede los permisos
+                Toast.makeText(this, "Gracias, permisos concedidos", Toast.LENGTH_LONG).show();
+            } else { // si se deniega el permiso
+                Toast.makeText(this, "Por favor, proporciona permisos", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-
+    /**
+     * metodo que controla el boton de la navegación
+     */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -115,22 +122,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * metodo agrega elementos a la barra de opciones
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.signout, menu);
         return true;
     }
 
+    /**
+     * metodo gestiona los evento de seleccion de las opciones
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (item.getItemId() == R.id.menu_sign_out) {
-            AuthUI.getInstance().signOut(this)
+        if (item.getItemId() == R.id.menu_sign_out) { // si el elemento seleccionado es sign out
+            AuthUI.getInstance().signOut(this) // firebase deslogea al usuario
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -139,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                                     Toast.LENGTH_LONG)
                                     .show();
 
-                            // Close activity
+                            // cierra la actividad
                             finish();
                         }
                     });
@@ -148,41 +155,45 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    /**
+     * Maneja la navegacion del menu
+     *
+     * @param item MenuItem
+     */
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
         String title = "";
 
-        if (id == R.id.nav_eventos) {
+        if (id == R.id.nav_eventos) { // se selecciona eventos
             fragment = new FragmentEventos();
             title = "Eventos";
-        } else if (id == R.id.nav_noticias) {
+        } else if (id == R.id.nav_noticias) { // se selecciona noticias
             fragment = new FragmentNoticias();
             title = "Noticias";
-        } else if (id == R.id.nav_descargas) {
+        } else if (id == R.id.nav_descargas) { // se selecciona descargas
             fragment = new FragmentDescargas();
             title = "Descargas";
-        } else if (id == R.id.nav_contactar) {
-            fragment = new FragmentContactar();
+        } else if (id == R.id.nav_foro) { // se selecciona foro
+            fragment = new FragmentForo();
             title = "Foro";
         }
 
-        if (fragment != null) {
+        if (fragment != null) { // si no es null
+
+            // Se cambia el contenido del fragment
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
 
-        // set the toolbar title
-        if (getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) { // si no es null establecer el título de la barra de herramientas
             getSupportActionBar().setTitle(title);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout); // se busca drawer_layout en el xml
+        drawer.closeDrawer(GravityCompat.START); // se cierra la navegacion
         return true;
     }
 
@@ -205,7 +216,9 @@ public class MainActivity extends AppCompatActivity
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, new FragmentEventos());
                 ft.commit();
-                getSupportActionBar().setTitle("Eventos");
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle("Eventos");
+                }
                 checkSelfPermission();
             } else {
                 Toast.makeText(this,

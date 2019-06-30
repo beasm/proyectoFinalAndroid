@@ -13,18 +13,18 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash); // se define el xml del splash
 
-        getSupportActionBar().hide();
+        getSupportActionBar().hide();  // se oculta la barra de tareas
 
-        TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash);
+        TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash); // se busca el titulo en el xml
 
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion);
-        tv_titulo.startAnimation(anim);
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion_titulo); // se carga la animación del titulo
+        tv_titulo.startAnimation(anim); // se lanza la animación del titulo
 
-        ImageView tv_imagen = (ImageView) findViewById(R.id.imagen_splash);
-        Animation anim_imagen = AnimationUtils.loadAnimation(this, R.anim.animacion_imagen);
-        tv_imagen.startAnimation(anim_imagen);
+        ImageView tv_imagen = (ImageView) findViewById(R.id.imagen_splash); // se busca la imagen en el xml
+        Animation anim_imagen = AnimationUtils.loadAnimation(this, R.anim.animacion_imagen); // se carga la animación de la imagen
+        tv_imagen.startAnimation(anim_imagen); // se lanza la animación del titulo
 
         anim.setAnimationListener(this);
     }
@@ -36,6 +36,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
     @Override
     public void onAnimationEnd(Animation animation) {
+        // Se pasa a la activida principal
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

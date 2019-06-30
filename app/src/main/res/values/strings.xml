@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Proyecto Final Android</string>
-    <string name="mis_tareas">Proyecto Final Android</string>
+    <string name="app_name">Little Stars</string>
+    <string name="mis_tareas">Little Stars</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="imagen_de_fondo">Imagen de fondo</string>
     <string name="itt">ITT</string>
@@ -12,7 +12,7 @@
     <string name="todo">TODO</string>
     <string name="icono">Icono</string>
     <string name="firma">Bea</string>
-    <string name="CrearLogin">Crear</string>
+    <string name="crearLogin">Crear</string>
     <string name="backBoton">Back</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -21,6 +21,11 @@
     <string name="nav_header_subtitle">Selecione una</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Mis Tareas</string>
-    <string name="descarga_movil_string">Descarga nuestra juego para el movil</string>
-    <string name="juegao_online_string">Juega a nuestra version online</string>
+    <string name="descarga_movil_string">Descargar juego para el movil</string>
+    <string name="juego_online_string">Juega en version online</string>
+    <string name="foro">Foro</string>
+    <string name="descargas">Descargas</string>
+    <string name="noticias">Noticias</string>
+    <string name="eventos">Eventos</string>
+    <string name="sign_out">Sign out</string>
 </resources>
