@@ -1,6 +1,5 @@
 package com.example.proyectofinalandroid.contactar;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,47 +29,116 @@ public class FragmentForo extends Fragment {
     private String chats = "foro";
     private FirebaseListAdapter<ChatMessage> adapter;
     private ListView listOfMessages;
-    private FloatingActionButton fab;
+    private FloatingActionButton boton_enviar_mensaje;
     private EditText input;
 
-    private OnFragmentInteractionListener mListener;
-
+    /**
+     *  Contructor vacio es necesitado
+     */
     public FragmentForo() {
-        // Required empty public constructor
     }
 
+    /**
+     * Setter para poder cambiar el chat
+     *
+     * @param chats
+     */
     public void setChats(String chats) {
         this.chats = chats;
     }
 
+    /**
+     * Mostramos los foros guardados en firebase
+     */
     private void displayChatMessages() {
-        if (chats.equals("foro")) {
-            adapter = new TodosForos(this, chats);
-        } else {
+        if (chats.equals("foro")) { // si chats es foro, al cargar la pagina es el valor por defiecto
+            adapter = new TodosForos(this, chats); // cargamos la lista de todos los foros
+        } else { // si no cargamos el foro seleccionado
             adapter = new MessageAdapterForo(this, chats);
         }
+        // actualizamos la lista con los resultados
         listOfMessages.setAdapter(adapter);
     }
 
+    /**
+     * Inicializamos y cargamos la pagina al crearse la vista
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Declaramos la vista
         View view;
-        if (chats.equals("foro")) {
+        if (chats.equals("foro")) { // si chats es foro
+
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            // Obtenemos la referencia de la vista fragment_foro
             view = inflater.inflate(R.layout.fragment_foro, container, false);
+            // Obtenemos la referencia de la lista de los eventos
             listOfMessages = view.findViewById(R.id.list_of_messages);
+            // llamamos al metodo para muestrar la info de firebase
             displayChatMessages();
-        } else {
+
+            // activamos un escuchador los eventos de on click de los componentes de la listas
+            listOfMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // referencia de la posicion del elemento de la lista
+                    DatabaseReference itemRef = adapter.getRef(position);
+
+                    // obtenemos el nombre del foto al que vamos acceder y se lanza Fragment
+                    itemRef.child("messageUser").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // obtenemos el valor seleccionado y modificamos el valor de la variable chats
+                            String value = dataSnapshot.getValue(String.class);
+
+                            // Se lanza el fragment FragmentForo con el nuevo valor de chats
+                            FragmentForo fragment = new FragmentForo();
+                            fragment.setChats(value);
+                            FragmentTransaction ft = ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.content_frame, fragment);
+                            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            ft.commit();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
+                    });
+
+                }
+            });
+
+        } else { // si no es foro el valor
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            // Obtenemos la referencia de la vista fragment_contactar
             view = inflater.inflate(R.layout.fragment_contactar, container, false);
-            fab = view.findViewById(R.id.fab);
+
+            // Obtenemos la referencias del boton, de la entrada de texto y la lista
+            boton_enviar_mensaje = view.findViewById(R.id.boton_enviar_mensaje);
             input = view.findViewById(R.id.input);
             listOfMessages = view.findViewById(R.id.list_of_messages);
+            listOfMessages.setOnItemClickListener(null);
+
+            // llamamos al metodo para muestrar la info de firebase
             displayChatMessages();
-            fab.setOnClickListener(new View.OnClickListener() {
+
+            // activamos un escuchador los eventos de on click del boton
+            boton_enviar_mensaje.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!input.getText().toString().trim().equals("")) {
+                    if (!input.getText().toString().trim().equals("")) { // si no esta vacio
+
+                        // guardamos el mensaje en firebase
                         FirebaseDatabase.getInstance()
                                 .getReference(chats)
                                 .push()
@@ -83,55 +152,21 @@ public class FragmentForo extends Fragment {
                 }
             });
         }
-
-        listOfMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DatabaseReference itemRef = adapter.getRef(position);
-                itemRef.child("messageUser").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        FragmentForo fragment = new FragmentForo();
-                        FragmentTransaction ft = ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction();
-//                        ft.replace(R.id.content_frame, fragment);
-                        fragment.setChats(value);
-                        ft.replace(R.id.content_frame, fragment);
-                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                        ft.commit();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-
-                });
-
-            }
-        });
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-
-    }
-
+    /**
+     * Metodo empezar el Fragment
+     */
     @Override
     public void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
-
+    /**
+     * Metodo parar el Fragment
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -139,17 +174,10 @@ public class FragmentForo extends Fragment {
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * Esta interfaz debe ser implementada por actividades que contengan Fragment
+     * para permitir que una interacción.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

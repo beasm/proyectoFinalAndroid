@@ -26,122 +26,109 @@ import com.google.firebase.database.ValueEventListener;
 public class FragmentEventos extends Fragment {
     private FirebaseListAdapter<Eventos> adapter;
     private ListView listOfEventos;
-//    private FloatingActionButton fab_eventos;
-//    private EditText input_eventos;
-    private Context mContext;
 
-    private FragmentEventos.OnFragmentInteractionListener mListener;
-
+    /**
+     *  Contructor vacio es necesitado
+     */
     public FragmentEventos() {
-        // Required empty public constructor
     }
 
+    /**
+     * Mostramos las noticias guardados en firebase
+     */
     private void displayEventos() {
-
+        // opciones que usaremos para llamar a firebase
         FirebaseListOptions<Eventos> options = new FirebaseListOptions.Builder<Eventos>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("eventos"), Eventos.class)
                 .setLayout(R.layout.eventos)
                 .build();
+        // llamamos a firebase
         adapter = new FirebaseListAdapter<Eventos>(options) {
             @Override
             protected void populateView(View v, Eventos model, int position) {
-                // Get references to the views of message.xml
+                // obtenemos las referencias de la vista eventos.xml
                 TextView eventosContenido = (TextView)v.findViewById(R.id.eventos_contenido);
                 TextView eventosTitulo = (TextView)v.findViewById(R.id.eventos_titulo);
                 TextView eventosTime = (TextView)v.findViewById(R.id.eventos_time);
-//                TextView eventosUrl = (TextView)v.findViewById(R.id.eventos_url);
 
-                // Set their text
+                // Asignamos los valores obtenido de firebase
                 eventosContenido.setText(model.getEventosContenido());
                 eventosTitulo.setText(model.getEventosTitulo());
-//                eventosUrl.setText(model.getEventosUrl());
-
-                // Format the date before showing it
-                eventosTime.setText(DateFormat.format("EEE, dd MMM HH:mm",//"dd-MM-yyyy (HH:mm:ss)",
+                eventosTime.setText(DateFormat.format("EEE, dd MMM HH:mm",
                         model.getEventosTime()));
             }
 
         };
+        // actualizamos la lista con los resultados
         listOfEventos.setAdapter(adapter);
     }
 
+    /**
+     * Inicializamos y cargamos la pagina al crearse la vista
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Obtenemos la referencia de la vista fragment_eventos
         View view = inflater.inflate(R.layout.fragment_eventos, container, false);
-//        fab_eventos = view.findViewById(R.id.fab_eventos);
-//        input_eventos = view.findViewById(R.id.input_eventos);
+
+        // Obtenemos la referencia de la lista de los eventos
         listOfEventos = view.findViewById(R.id.list_of_eventos);
-        displayEventos();
 
-//        fab_eventos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!input_eventos.getText().toString().trim().equals("")) {
-//                    FirebaseDatabase.getInstance()
-//                            .getReference("eventos")
-//                            .push()
-//                            .setValue(new Eventos(input_eventos.getText().toString(),
-//                                    FirebaseAuth.getInstance()
-//                                            .getCurrentUser()
-//                                            .getDisplayName())
-//                            );
-//                    input_eventos.setText("");
-//                }
-//            }
-//        });
+        displayEventos(); // llamamos al metodo para muestrar la info de firebase
 
+        // activamos un escuchador los eventos de on click de los componentes de la listas
         listOfEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // referencia de la posicion del elemento de la lista
                 DatabaseReference itemRef = adapter.getRef(position);
+
+                // obtenemos la URL del evento en google maps y se lanza en el navegador
                 itemRef.child("eventosGeo").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        // TODO: google maps
-                        String value = dataSnapshot.getValue(String.class);
+                        String value = dataSnapshot.getValue(String.class); // obtenemos el valor
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-//                        Intent intent = new Intent( this, GeofenceTrasitionService.class);
-                        intent.setData(Uri.parse(value));
-                        startActivity(intent);
-//                        String value = dataSnapshot.getValue(String.class);
-//                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(value));
-//                        mContext.startActivity(browserIntent);
+                        intent.setData(Uri.parse(value));  // preparamos para lazar la actividad de la URL
+                        startActivity(intent); // lazamos la URL
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
-
                 });
-
             }
         });
         return view;
     }
 
+    /**
+     * Metodo del context el Fragment
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof FragmentEventos.OnFragmentInteractionListener) {
-            mListener = (FragmentEventos.OnFragmentInteractionListener) context;
-            mContext = context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
+    /**
+     * Metodo empezar el Fragment
+     */
     @Override
     public void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
-
+    /**
+     * Metodo parar el Fragment
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -149,17 +136,10 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * Esta interfaz debe ser implementada por actividades que contengan Fragment
+     * para permitir que una interacción.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

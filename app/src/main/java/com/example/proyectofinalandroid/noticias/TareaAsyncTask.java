@@ -10,30 +10,36 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
-//Creamos una clase que herede de la clase base AsyncTask con los
-//tipos de parámetro de entrada, parámetro para la actualización del progreso
-//en el hilo principal y el resultado devuelto del procesamiento.
+/**
+ * Creamos la clase que herede de la clase base AsyncTask con los
+ * tipos de parámetro de entrada
+ */
 public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
 {
-    //Se declaran los elementos necesarios para la descarga y
-    //visionado de la imagen.
+    // referenecia de la imagen necesario para la descarga de la imagen
     private final WeakReference imageRef;
-    private BufferedInputStream input;
-    private Bitmap bitmap;
-    private ImageView imgAA;
 
+    /**
+     * Contructor con la referencia de la imagen por parametro
+     *
+     * @param imgAA ImageView
+     */
     public TareaAsyncTask(ImageView imgAA){
         imageRef = new WeakReference(imgAA);
     }
-    //Método que ejecutará las tareas en segundo plano, encargado de conectarse
-    //a una dirección URL con la imagen que se va a descargar.
+
+    /**
+     * Método que ejecutará las tareas en segundo plano, encargado de conectarse
+     * a una dirección URL con la imagen que se va a descargar.
+     */
     @Override
     protected Bitmap doInBackground(String... params) {
+        Bitmap bitmap = null;
         try{
             URL url = new URL(params[0]);
             URLConnection conection = url.openConnection();
             conection.connect();
-            input = new BufferedInputStream(url.openStream(), 8192);
+            BufferedInputStream input = new BufferedInputStream(url.openStream(), 8192);
             bitmap = BitmapFactory.decodeStream(input);
             input.close();
         }catch(Exception ex)
@@ -43,9 +49,11 @@ public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
         return bitmap;
     }
 
-    //Método que se ejecutará antes del procesamiento de la tarea,
-    //indicando en un componente ProgressDialog,
-    //que las tareas en segundo plano van a comenzar a ejecutarse
+    /**
+     * Método que se ejecutará antes del procesamiento de la tarea,
+     * indicando en un componente ProgressDialog,
+     * que las tareas en segundo plano van a comenzar a ejecutarse
+     */
     @Override
     protected void onPreExecute() {
         try{
@@ -56,17 +64,15 @@ public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
         }
     }
 
-    //Método que se procesará justo después de ejecutarse la tarea en
-    //segundo plano, encargado de mostrar la imagen descargada en la
-    //pantalla.
+    /**
+     * Método que se procesará justo después de ejecutarse la tarea en
+     * segundo plano, encargado de mostrar la imagen descargada en la
+     * pantalla.
+     */
     @Override
     public void onPostExecute(Bitmap bitmap)
     {
         try{
-//            if(isCancelled())
-//            {
-//                bitmap = null;
-//            }
             if (imageRef != null) {
                 ImageView imageView = (ImageView) imageRef.get();
                 if (imageView != null && bitmap != null) {
@@ -81,7 +87,9 @@ public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
         }
     }
 
-    //Método encargado de cancelar la ejecución de la tarea.
+    /**
+     * Método encargado de cancelar la ejecución de la tarea.
+     */
     @Override
     protected void onCancelled() {
         ImageView imageView = (ImageView) imageRef.get();
@@ -89,4 +97,3 @@ public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
     }
 
 }
-

@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,105 +26,100 @@ import com.google.firebase.database.ValueEventListener;
 public class FragmentNoticias extends Fragment {
     private FirebaseListAdapter<Noticia> adapter;
     private ListView listOfNoticias;
-    private FloatingActionButton fab_noticias;
-    private EditText input_noticias;
     private Context mContext;
-//    private TareaAsyncTask tareasynctask;
-    private OnFragmentInteractionListener mListener;
 
+    /**
+     *  Contructor vacio es necesitado
+     */
     public FragmentNoticias() {
-        // Required empty public constructor
     }
 
+    /**
+     * Mostramos las noticias guardados en firebase
+     */
     private void displayNoticias() {
-
+        // opciones que usaremos para llamar a firebase
         FirebaseListOptions<Noticia> options = new FirebaseListOptions.Builder<Noticia>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("news"), Noticia.class)
                 .setLayout(R.layout.noticias)
                 .build();
+        // llamamos a firebase
         adapter = new FirebaseListAdapter<Noticia>(options) {
             @Override
             protected void populateView(View v, Noticia model, int position) {
-                // Get references to the views of message.xml
+                // obtenemos las referencias de la vista noticias.xml
                 TextView noticiasContenido = (TextView)v.findViewById(R.id.noticias_contenido);
                 TextView noticiasTitulo = (TextView)v.findViewById(R.id.noticias_titulo);
-//                TextView noticiasTime = (TextView)v.findViewById(R.id.noticias_time);
-//                TextView noticiasUrl = (TextView)v.findViewById(R.id.noticias_url);
                 ImageView imgAA  = v.findViewById(R.id.imagen_noticia);
 
-                // Set their text
+                // Asignamos los valores obtenido de firebase
                 noticiasContenido.setText(model.getNoticiasContenido());
                 noticiasTitulo.setText(model.getNoticiasTitulo());
-//                noticiasUrl.setText(model.getNoticiasUrl());
 
-                // Format the date before showing it
-//                noticiasTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
-//                        model.getNoticiasTime()));
-
+                // llamamos a la clase TareaAsyncTask para obtener la imagen en segundo plano
                 TareaAsyncTask tareasynctask = new TareaAsyncTask(imgAA);
                 tareasynctask.execute(model.getNoticiasImagen());
             }
 
         };
+        // actualizamos la lista con los resultados
         listOfNoticias.setAdapter(adapter);
     }
 
+    /**
+     * Inicializamos y cargamos la pagina al crearse la vista
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Obtenemos la referencia de la vista fragment_noticias
         View view = inflater.inflate(R.layout.fragment_noticias, container, false);
-//        fab_noticias = view.findViewById(R.id.fab_noticias);
-//        input_noticias = view.findViewById(R.id.input_noticias);
+
+        // Obtenemos la referencia de la lista de las noticias
         listOfNoticias = view.findViewById(R.id.list_of_noticias);
-        displayNoticias();
 
-//        fab_noticias.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!input_noticias.getText().toString().trim().equals("")) {
-//                    FirebaseDatabase.getInstance()
-//                            .getReference("news")
-//                            .push()
-//                            .setValue(new Noticia(input_noticias.getText().toString(),
-//                                    FirebaseAuth.getInstance()
-//                                            .getCurrentUser()
-//                                            .getDisplayName())
-//                            );
-//                    input_noticias.setText("");
-//                }
-//            }
-//        });
+        displayNoticias(); // llamamos al metodo para muestrar la info de firebase
 
+        // activamos un escuchador los eventos de on click de los componentes de la listas
         listOfNoticias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // referencia de la posicion del elemento de la lista
                 DatabaseReference itemRef = adapter.getRef(position);
+
+                // obtenemos la URL de la noticia y se lanza en el navegador
                 itemRef.child("noticiasUrl").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(value));
-                        mContext.startActivity(browserIntent);
+                        String value = dataSnapshot.getValue(String.class); // obtenemos el valor
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(value)); // preparamos para lazar la actividad de la URL
+                        mContext.startActivity(browserIntent); // lazamos la URL
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
-
                 });
-
             }
         });
         return view;
     }
 
+    /**
+     * Se inicializa el mContext con context
+     *
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
             mContext = context;
         } else {
             throw new RuntimeException(context.toString()
@@ -134,13 +127,18 @@ public class FragmentNoticias extends Fragment {
         }
     }
 
+    /**
+     * Metodo empezar el Fragment
+     */
     @Override
     public void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
-
+    /**
+     * Metodo parar el Fragment
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -148,17 +146,10 @@ public class FragmentNoticias extends Fragment {
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * Esta interfaz debe ser implementada por actividades que contengan Fragment
+     * para permitir que una interacción.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

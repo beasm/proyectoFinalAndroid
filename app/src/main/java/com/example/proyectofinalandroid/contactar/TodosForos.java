@@ -11,6 +11,12 @@ public class TodosForos extends FirebaseListAdapter<ChatMessage> {
 
     private FragmentForo activity;
 
+    /**
+     * Contructor inicializando el contructor FirebaseListAdapter
+     *
+     * @param activity
+     * @param chats
+     */
     public TodosForos(FragmentForo activity, String chats) {
         super(new FirebaseListOptions.Builder<ChatMessage>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child(chats), ChatMessage.class)
@@ -21,15 +27,10 @@ public class TodosForos extends FirebaseListAdapter<ChatMessage> {
 
     @Override
     protected void populateView(View v, ChatMessage model, int position) {
-//        TextView messageText = (TextView) v.findViewById(R.id.message_text);
+        // obtenemos la referencia del texto de foros.xml
         TextView nombreForo = (TextView) v.findViewById(R.id.nombre_foro);
-//        TextView messageTime = (TextView) v.findViewById(R.id.message_time);
+        nombreForo.setText(model.getMessageUser()); // asignamos valor
 
-//        messageText.setText(model.getMessageText());
-        nombreForo.setText(model.getMessageUser());
-
-        // Format the date before showing it
-//        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
     }
 
 

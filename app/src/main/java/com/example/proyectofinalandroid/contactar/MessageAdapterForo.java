@@ -22,14 +22,14 @@ public class MessageAdapterForo extends FirebaseListAdapter<ChatMessage> {
 
     @Override
     protected void populateView(View v, ChatMessage model, int position) {
+        // obtenemos las referencias de la vista message.xml
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
         TextView messageUser = (TextView) v.findViewById(R.id.message_user);
         TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
+        // Asignamos los valores obtenido de firebase
         messageText.setText(model.getMessageText());
         messageUser.setText(model.getMessageUser());
-
-        // Format the date before showing it
         messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
     }
 

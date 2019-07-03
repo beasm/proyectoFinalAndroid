@@ -1,27 +1,17 @@
 package com.example.proyectofinalandroid.eventos;
 
-import java.util.Date;
-
 public class Eventos {
-
+    // declaramos la variable de la clase
     private String eventosContenido;
     private String eventosTitulo;
     private String eventosGeo;
     private long eventosTime;
 
-    public Eventos(String eventosContenido, String eventosTitulo) {
-        this.eventosContenido = eventosContenido;
-        this.eventosTitulo = eventosTitulo;
-        this.eventosGeo = "geo:1,1";//"geo:" + latitude + "," + longitude ;
-
-        // Initialize to current time
-        eventosTime = new Date().getTime();
-    }
-
+    // contructor vacio
     public Eventos(){
-
     }
 
+    // setter y getter
     public String getEventosContenido() {
         return eventosContenido;
     }

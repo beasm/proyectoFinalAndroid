@@ -3,11 +3,12 @@ package com.example.proyectofinalandroid.contactar;
 import java.util.Date;
 
 public class ChatMessage {
-
+    // declaramos la variable de la clase
     private String messageText;
     private String messageUser;
     private long messageTime;
 
+    // contructor con los parametros
     public ChatMessage(String messageText, String messageUser) {
         this.messageText = messageText;
         this.messageUser = messageUser;
@@ -16,10 +17,12 @@ public class ChatMessage {
         messageTime = new Date().getTime();
     }
 
+    // contructor vacio
     public ChatMessage(){
 
     }
 
+    // setter y getter
     public String getMessageText() {
         return messageText;
     }

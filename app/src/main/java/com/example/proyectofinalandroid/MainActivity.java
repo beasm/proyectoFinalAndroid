@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final int SIGN_IN_REQUEST_CODE = 200;
     private static final short REQUEST_CODE = 6545;
+    private Fragment lastFragment;
+    private String lastTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +154,19 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
         }
+        if (item.getItemId() == android.R.id.home) {
+                if (lastFragment != null) {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.content_frame, lastFragment);
+                    ft.commit();
+
+                    if (getSupportActionBar() != null) { // si no es null establecer el título de la barra de herramientas
+                        getSupportActionBar().setTitle(lastTitle);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    }
+                }
+                return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -181,7 +197,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (fragment != null) { // si no es null
-
+            lastFragment = fragment;
+            lastTitle = title;
             // Se cambia el contenido del fragment
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
@@ -208,11 +225,13 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == SIGN_IN_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) { //primera vez
+            if (resultCode == RESULT_OK) { // si se logeo el usuario
+                // se muestra el mensaje
                 Toast.makeText(this,
                         "Ha iniciado sesión correctamente. Bienvenido!",
                         Toast.LENGTH_LONG)
                         .show();
+                // Se lanza el fragment FragmentEventos
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, new FragmentEventos());
                 ft.commit();
@@ -220,13 +239,13 @@ public class MainActivity extends AppCompatActivity
                     getSupportActionBar().setTitle("Eventos");
                 }
                 checkSelfPermission();
-            } else {
+            } else { // si hubo un problema
                 Toast.makeText(this,
                         "No pudimos iniciar sesión. Inténtalo de nuevo más tarde.",
                         Toast.LENGTH_LONG)
                         .show();
 
-                // Close the app
+                // Cierra la app
                 finish();
             }
         }

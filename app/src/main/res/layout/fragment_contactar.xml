@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true" android:src="@drawable/ic_menu_send"
-        android:id="@+id/fab"
+        android:id="@+id/boton_enviar_mensaje"
         android:tint="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -24,7 +24,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/fab"
+        android:layout_toLeftOf="@id/boton_enviar_mensaje"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
@@ -42,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@id/fab"
+        android:layout_above="@id/boton_enviar_mensaje"
         android:dividerHeight="16dp"
         android:divider="@android:color/transparent"
         android:id="@+id/list_of_messages"

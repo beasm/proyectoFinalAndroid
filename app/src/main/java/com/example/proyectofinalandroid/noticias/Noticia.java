@@ -1,28 +1,18 @@
 package com.example.proyectofinalandroid.noticias;
 
-import java.util.Date;
-
 public class Noticia {
-
+    // declaramos la variable de la clase
     private String noticiasContenido;
     private String noticiasTitulo;
     private String noticiasUrl;
     private String noticiasImagen;
     private long noticiasTime;
 
-    public Noticia(String noticiasContenido, String noticiasTitulo) {
-        this.noticiasContenido = noticiasContenido;
-        this.noticiasTitulo = noticiasTitulo;
-        this.noticiasUrl = "";
-
-        // Initialize to current time
-        noticiasTime = new Date().getTime();
-    }
-
+    // contructor vacio
     public Noticia(){
-
     }
 
+    // setter y getter
     public String getNoticiasContenido() {
         return noticiasContenido;
     }

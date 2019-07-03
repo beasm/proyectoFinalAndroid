@@ -16,47 +16,48 @@ import android.widget.ImageView;
 import com.example.proyectofinalandroid.R;
 
 public class FragmentDescargas extends Fragment {
-    private static final String URL_TO_DOWNLOAD = "http://192.168.0.38:2000/Proyecto/juego/android.apk";
-    private static final String URL_TO_ONLINE = "http://192.168.0.38:2000/Proyecto/juego/index.html";
-    //private static final String URL_TO_DOWNLOAD = "https://upload.wikimedia.org/wikipedia/commons/0/0e/Googleplex-Patio-Aug-2014.JPG";
-    private static final String NAME_FILE = "android.apk";
-    private Context mContext;
+    private static final String URL_TO_DOWNLOAD = "https://beasm.github.io/proyectoFinalWeb/WebContent/download/juego.apk";
+    private static final String NAME_FILE = "juego.apk";
 
-    private OnFragmentInteractionListener mListener;
-
+    /**
+     *  Contructor vacio es necesitado
+     */
     public FragmentDescargas() {
-        // Required empty public constructor
     }
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    /**
+     * Inicializamos y cargamos la pagina al crearse la vista
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Obtenemos la referencia de la vista fragment_descargas
         View view = inflater.inflate(R.layout.fragment_descargas, container, false);
+
+        // Obtenemos la referencia de la imagen
         final ImageView imagen_descargas = view.findViewById(R.id.imagen_descargas);
+
+        // activamos un escuchador del evento de on click en la imagen
         imagen_descargas.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 try{
-
-//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_TO_DOWNLOAD));
-//                    mContext.startActivity(browserIntent);
+                    // Se prepara la request para poder descargar el fichero
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(URL_TO_DOWNLOAD));
-                    request.setDescription("Downloading file " + NAME_FILE);
+                    request.setDescription("Descargando el fichero " + NAME_FILE);
                     request.setTitle(NAME_FILE);
                     request.allowScanningByMediaScanner();
                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                     request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, NAME_FILE);
-
-                    // get download service and enqueue file
+                    // se prepara el manage para solicitar la descarga
                     DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                     manager.enqueue(request);
                 }
@@ -67,48 +68,10 @@ public class FragmentDescargas extends Fragment {
             }
         });
 
-//        final ImageView imagen_juego_online = view.findViewById(R.id.imagen_juego_online);
-//        imagen_juego_online.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v) {
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_TO_ONLINE));
-//                mContext.startActivity(browserIntent);
-//            }
-//        });
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-            mContext = context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
