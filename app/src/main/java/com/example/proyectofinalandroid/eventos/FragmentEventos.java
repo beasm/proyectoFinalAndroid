@@ -28,7 +28,7 @@ public class FragmentEventos extends Fragment {
     private ListView listOfEventos;
 
     /**
-     *  Constructor vacío es necesitado
+     *  Constructor vacío
      */
     public FragmentEventos() {
     }
@@ -37,21 +37,21 @@ public class FragmentEventos extends Fragment {
      * Mostramos las noticias guardados en firebase
      */
     private void displayEventos() {
-        // opciones que usaremos para llamar a firebase
+        // Opciones que se usan para llamar a firebase
         FirebaseListOptions<Eventos> options = new FirebaseListOptions.Builder<Eventos>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("eventos"), Eventos.class)
                 .setLayout(R.layout.eventos)
                 .build();
-        // llamamos a firebase
+        // Se llama a firebase
         adapter = new FirebaseListAdapter<Eventos>(options) {
             @Override
             protected void populateView(View v, Eventos model, int position) {
-                // obtenemos las referencias de la vista eventos.xml
+                // Se obtienen las referencias de la vista eventos.xml
                 TextView eventosContenido = (TextView)v.findViewById(R.id.eventos_contenido);
                 TextView eventosTitulo = (TextView)v.findViewById(R.id.eventos_titulo);
                 TextView eventosTime = (TextView)v.findViewById(R.id.eventos_time);
 
-                // Asignamos los valores obtenido de firebase
+                // Se asignan los valores obtenidos de firebase
                 eventosContenido.setText(model.getEventosContenido());
                 eventosTitulo.setText(model.getEventosTitulo());
                 eventosTime.setText(DateFormat.format("EEE, dd MMM HH:mm",
@@ -59,7 +59,7 @@ public class FragmentEventos extends Fragment {
             }
 
         };
-        // actualizamos la lista con los resultados
+        // Se actualiza la lista con los resultados
         listOfEventos.setAdapter(adapter);
     }
 
@@ -83,21 +83,21 @@ public class FragmentEventos extends Fragment {
 
         displayEventos(); // llamamos al método para mostrar la info de firebase
 
-        // activamos un escuchador los eventos de on click de los componentes de la listas
+        // Se activa un escuchador los eventos de on click de los componentes de la listas
         listOfEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // referencia de la posición del elemento de la lista
+                // Referencia de la posición del elemento de la lista
                 DatabaseReference itemRef = adapter.getRef(position);
 
-                // obtenemos la URL del evento en google maps y se lanza en el navegador
+                // Obtenemos la URL del evento en google maps y se lanza en el navegador
                 itemRef.child("eventosGeo").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class); // obtenemos el valor
+                        String value = dataSnapshot.getValue(String.class); // Obtenemos el valor
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(value));  // preparamos para lazar la actividad de la URL
-                        startActivity(intent); // lazamos la URL
+                        intent.setData(Uri.parse(value));  // Preparamos para lazar la actividad de la URL
+                        startActivity(intent); // Lanzamos la URL
                     }
 
                     @Override
@@ -110,7 +110,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * método del context el Fragment
+     * Método del context el Fragment
      */
     @Override
     public void onAttach(Context context) {
@@ -118,7 +118,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * método empezar el Fragment
+     * Método empezar el Fragment
      */
     @Override
     public void onStart() {
@@ -127,7 +127,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * método parar el Fragment
+     * Método parar el Fragment
      */
     @Override
     public void onStop() {
@@ -137,7 +137,7 @@ public class FragmentEventos extends Fragment {
 
     /**
      * Esta interfaz debe ser implementada por actividades que contengan Fragment
-     * para permitir que una interacción.
+     * para permitir una interacción entre ellos. Ejemplo implements FragmentEventos.OnFragmentInteractionListener
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

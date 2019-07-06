@@ -20,7 +20,7 @@ public class FragmentDescargas extends Fragment {
     private static final String NAME_FILE = "juego.apk";
 
     /**
-     *  Constructor vacío es necesitado
+     *  Constructor vacío
      */
     public FragmentDescargas() {
     }
@@ -43,7 +43,7 @@ public class FragmentDescargas extends Fragment {
         // Obtenemos la referencia de la imagen
         final ImageView imagen_descargas = view.findViewById(R.id.imagen_descargas);
 
-        // activamos un escuchador del evento de on click en la imagen
+        // Activamos un escuchador del evento de on click en la imagen
         imagen_descargas.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -71,6 +71,10 @@ public class FragmentDescargas extends Fragment {
         return view;
     }
 
+    /**
+     * Esta interfaz debe ser implementada por actividades que contengan Fragment
+     * para permitir una interacción entre ellos. Ejemplo implements FragmentEventos.OnFragmentInteractionListener
+     */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }

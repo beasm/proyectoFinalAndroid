@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity
         FragmentEventos.OnFragmentInteractionListener,
         FragmentDescargas.OnFragmentInteractionListener,
         FragmentForo.OnFragmentInteractionListener,
-        FragmentNoticias.OnFragmentInteractionListener {
+        FragmentNoticias.OnFragmentInteractionListener,
+        MainFragment.OnFragmentInteractionListener {
 
     private static final int SIGN_IN_REQUEST_CODE = 200;
     private static final short REQUEST_CODE = 6545;
@@ -58,13 +59,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this); // se asigna el escuchador
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) { // si el usuario no esta logeado
-            // Se inicia la actividad de iniciar sesión o el registro
-            startActivityForResult(
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .build(),
-                    SIGN_IN_REQUEST_CODE
-            );
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         } else { // si el usuario esta logeado
 
             // Muestra el mensaje de Bienvenido
@@ -77,9 +74,11 @@ public class MainActivity extends AppCompatActivity
 
             // se carga la página de Eventos
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, new FragmentEventos());
+            ft.replace(R.id.content_frame, new MainFragment());
             ft.commit();
-            getSupportActionBar().setTitle("Eventos");
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(R.string.app_name);
+            }
         }
     }
 
@@ -194,6 +193,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_foro) { // se selecciona foro
             fragment = new FragmentForo();
             title = "Foro";
+        } else if (id == R.id.nav_web) { // se selecciona web
+            String value = "https://beasm.github.io/proyectoFinalWeb/WebContent/"; // obtenemos el valor
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(value)); // preparamos para lazar la actividad de la URL
+            startActivity(browserIntent);
+        } else if (id == R.id.nav_help) { // se selecciona help
+
         }
 
         if (fragment != null) { // si no es null
@@ -233,10 +238,10 @@ public class MainActivity extends AppCompatActivity
                         .show();
                 // Se lanza el fragment FragmentEventos
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame, new FragmentEventos());
+                ft.replace(R.id.content_frame, new MainFragment());
                 ft.commit();
                 if (getSupportActionBar() != null) {
-                    getSupportActionBar().setTitle("Eventos");
+                    getSupportActionBar().setTitle(R.string.app_name);
                 }
                 checkSelfPermission();
             } else { // si hubo un problema

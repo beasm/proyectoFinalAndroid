@@ -21,6 +21,14 @@
             android:id="@+id/nav_foro"
             android:icon="@drawable/ic_menu_send"
             android:title="@string/foro" />
+        <item
+            android:id="@+id/nav_web"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/pagina_web" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/common_full_open_on_phone"
+            android:title="@string/ayuda" />
     </group>
 
 </menu>

@@ -175,7 +175,7 @@ public class FragmentForo extends Fragment {
 
     /**
      * Esta interfaz debe ser implementada por actividades que contengan Fragment
-     * para permitir que una interacción.
+     * para permitir una interacción entre ellos. Ejemplo implements FragmentEventos.OnFragmentInteractionListener
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

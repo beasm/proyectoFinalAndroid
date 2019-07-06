@@ -1,7 +1,7 @@
 package com.example.proyectofinalandroid.eventos;
 
 public class Eventos {
-    // declaramos la variable de la clase
+    // Declaramos  variables de la clase
     private String eventosContenido;
     private String eventosTitulo;
     private String eventosGeo;
@@ -11,7 +11,7 @@ public class Eventos {
     public Eventos(){
     }
 
-    // setter y getter
+    // Setter y Getter
     public String getEventosContenido() {
         return eventosContenido;
     }

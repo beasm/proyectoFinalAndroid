@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Little Stars</string>
+    <string name="usuario">Corrreo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="crea_una_cuenta">Crea una cuenta</string>
+    <string name="login">LOGIN</string>
+    <string name="CrearLogin">Crear</string>
     <string name="icono">Icono</string>
     <string name="firma">Bea</string>
     <string name="navigation_drawer_open">Abrir la navegación</string>
@@ -13,4 +18,8 @@
     <string name="eventos">Eventos</string>
     <string name="sign_out">Desconectarse</string>
     <string name="texto_descarga">Haz clic en la imagen para iniciar la descarga</string>
+    <string name="contenido_main_fragment">Podrás encontrar toda la información de talleres, campamentos y actividades de programación para que disfruten los más pequeños y jóvenes.\n\nAdemás dispones de un chat en el que podrás preguntar y compartir todas tus dudas.</string>
+    <string name="titulo_main_fragment">Bienvenid@s\na Little Stars</string>
+    <string name="pagina_web">Pagina Web</string>
+    <string name="ayuda">Ayuda</string>
 </resources>

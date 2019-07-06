@@ -3,7 +3,7 @@ package com.example.proyectofinalandroid.contactar;
 import java.util.Date;
 
 public class ChatMessage {
-    // declaramos la variable de la clase
+    // Declaramos las variables de la clase
     private String messageText;
     private String messageUser;
     private long messageTime;
@@ -13,7 +13,7 @@ public class ChatMessage {
         this.messageText = messageText;
         this.messageUser = messageUser;
 
-        // Initialize to current time
+        // Se inicializa la fecha
         messageTime = new Date().getTime();
     }
 
@@ -22,7 +22,7 @@ public class ChatMessage {
 
     }
 
-    // setter y getter
+    // Setter y Getter
     public String getMessageText() {
         return messageText;
     }
