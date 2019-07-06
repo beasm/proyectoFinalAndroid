@@ -17,14 +17,14 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
         getSupportActionBar().hide();  // se oculta la barra de tareas
 
-        TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash); // se busca el titulo en el xml
+        TextView tv_titulo = (TextView) findViewById(R.id.titulo_splash); // se busca el título en el xml
 
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion_titulo); // se carga la animación del titulo
-        tv_titulo.startAnimation(anim); // se lanza la animación del titulo
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.animacion_titulo); // se carga la animación del título
+        tv_titulo.startAnimation(anim); // se lanza la animación del título
 
         ImageView tv_imagen = (ImageView) findViewById(R.id.imagen_splash); // se busca la imagen en el xml
         Animation anim_imagen = AnimationUtils.loadAnimation(this, R.anim.animacion_imagen); // se carga la animación de la imagen
-        tv_imagen.startAnimation(anim_imagen); // se lanza la animación del titulo
+        tv_imagen.startAnimation(anim_imagen); // se lanza la animación del título
 
         anim.setAnimationListener(this);
     }
@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        // Se pasa a la activida principal
+        // Se pasa a la actividad principal
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

@@ -29,7 +29,7 @@ public class FragmentNoticias extends Fragment {
     private Context mContext;
 
     /**
-     *  Contructor vacio es necesitado
+     *  Constructor vacío es necesitado
      */
     public FragmentNoticias() {
     }
@@ -67,7 +67,7 @@ public class FragmentNoticias extends Fragment {
     }
 
     /**
-     * Inicializamos y cargamos la pagina al crearse la vista
+     * Inicializamos y cargamos la página al crearse la vista
      *
      * @param inflater
      * @param container
@@ -84,13 +84,13 @@ public class FragmentNoticias extends Fragment {
         // Obtenemos la referencia de la lista de las noticias
         listOfNoticias = view.findViewById(R.id.list_of_noticias);
 
-        displayNoticias(); // llamamos al metodo para muestrar la info de firebase
+        displayNoticias(); // llamamos al método para mostrar la info de firebase
 
         // activamos un escuchador los eventos de on click de los componentes de la listas
         listOfNoticias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // referencia de la posicion del elemento de la lista
+                // referencia de la posición del elemento de la lista
                 DatabaseReference itemRef = adapter.getRef(position);
 
                 // obtenemos la URL de la noticia y se lanza en el navegador
@@ -128,7 +128,7 @@ public class FragmentNoticias extends Fragment {
     }
 
     /**
-     * Metodo empezar el Fragment
+     * método empezar el Fragment
      */
     @Override
     public void onStart() {
@@ -137,7 +137,7 @@ public class FragmentNoticias extends Fragment {
     }
 
     /**
-     * Metodo parar el Fragment
+     * método parar el Fragment
      */
     @Override
     public void onStop() {

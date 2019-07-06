@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".descarga.FragmentDescargas">
 
-    <!-- Titulo del fragment de descargas -->
+    <!-- título del fragment de descargas -->
     <TextView
         android:id="@+id/titulo_descargas"
         android:layout_width="match_parent"
@@ -16,14 +16,14 @@
         android:textColor="@android:color/black"
         android:textSize="40sp" />
 
-    <!-- Decripcion del fragment de descargas -->
+    <!-- Descripción del fragment de descargas -->
     <TextView
         android:id="@+id/descripcion_descargas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titulo_descargas"
         android:layout_marginTop="20sp"
-        android:text="Haz click en la imagen para iniciar la descarga"
+        android:text="@string/texto_descarga"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp" />

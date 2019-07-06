@@ -7,7 +7,7 @@ public class Eventos {
     private String eventosGeo;
     private long eventosTime;
 
-    // contructor vacio
+    // Constructor vacío
     public Eventos(){
     }
 

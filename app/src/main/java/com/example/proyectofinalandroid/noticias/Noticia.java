@@ -8,7 +8,7 @@ public class Noticia {
     private String noticiasImagen;
     private long noticiasTime;
 
-    // contructor vacio
+    // Constructor vacío
     public Noticia(){
     }
 

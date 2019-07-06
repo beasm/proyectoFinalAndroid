@@ -15,7 +15,7 @@
         android:contentDescription="@string/icono"
         />
 
-    <!-- Titulo de las distintas noticias -->
+    <!-- título de las distintas noticias -->
     <TextView
         android:id="@+id/noticias_titulo"
         android:layout_width="wrap_content"

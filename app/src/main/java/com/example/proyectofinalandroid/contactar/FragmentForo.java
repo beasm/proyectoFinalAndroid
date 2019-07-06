@@ -33,7 +33,7 @@ public class FragmentForo extends Fragment {
     private EditText input;
 
     /**
-     *  Contructor vacio es necesitado
+     *  Constructor vacío es necesitado
      */
     public FragmentForo() {
     }
@@ -51,7 +51,7 @@ public class FragmentForo extends Fragment {
      * Mostramos los foros guardados en firebase
      */
     private void displayChatMessages() {
-        if (chats.equals("foro")) { // si chats es foro, al cargar la pagina es el valor por defiecto
+        if (chats.equals("foro")) { // si chats es foro, al cargar la página es el valor por defecto
             adapter = new TodosForos(this, chats); // cargamos la lista de todos los foros
         } else { // si no cargamos el foro seleccionado
             adapter = new MessageAdapterForo(this, chats);
@@ -61,7 +61,7 @@ public class FragmentForo extends Fragment {
     }
 
     /**
-     * Inicializamos y cargamos la pagina al crearse la vista
+     * Inicializamos y cargamos la página al crearse la vista
      *
      * @param inflater
      * @param container
@@ -81,14 +81,14 @@ public class FragmentForo extends Fragment {
             view = inflater.inflate(R.layout.fragment_foro, container, false);
             // Obtenemos la referencia de la lista de los eventos
             listOfMessages = view.findViewById(R.id.list_of_messages);
-            // llamamos al metodo para muestrar la info de firebase
+            // llamamos al método para mostrar la info de firebase
             displayChatMessages();
 
             // activamos un escuchador los eventos de on click de los componentes de la listas
             listOfMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    // referencia de la posicion del elemento de la lista
+                    // referencia de la posición del elemento de la lista
                     DatabaseReference itemRef = adapter.getRef(position);
 
                     // obtenemos el nombre del foto al que vamos acceder y se lanza Fragment
@@ -123,20 +123,20 @@ public class FragmentForo extends Fragment {
             // Obtenemos la referencia de la vista fragment_contactar
             view = inflater.inflate(R.layout.fragment_contactar, container, false);
 
-            // Obtenemos la referencias del boton, de la entrada de texto y la lista
+            // Obtenemos la referencias del botón, de la entrada de texto y la lista
             boton_enviar_mensaje = view.findViewById(R.id.boton_enviar_mensaje);
             input = view.findViewById(R.id.input);
             listOfMessages = view.findViewById(R.id.list_of_messages);
             listOfMessages.setOnItemClickListener(null);
 
-            // llamamos al metodo para muestrar la info de firebase
+            // llamamos al método para mostrar la info de firebase
             displayChatMessages();
 
-            // activamos un escuchador los eventos de on click del boton
+            // activamos un escuchador los eventos de on click del botón
             boton_enviar_mensaje.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!input.getText().toString().trim().equals("")) { // si no esta vacio
+                    if (!input.getText().toString().trim().equals("")) { // si no esta vacío
 
                         // guardamos el mensaje en firebase
                         FirebaseDatabase.getInstance()
@@ -156,7 +156,7 @@ public class FragmentForo extends Fragment {
     }
 
     /**
-     * Metodo empezar el Fragment
+     * método empezar el Fragment
      */
     @Override
     public void onStart() {
@@ -165,7 +165,7 @@ public class FragmentForo extends Fragment {
     }
 
     /**
-     * Metodo parar el Fragment
+     * método parar el Fragment
      */
     @Override
     public void onStop() {

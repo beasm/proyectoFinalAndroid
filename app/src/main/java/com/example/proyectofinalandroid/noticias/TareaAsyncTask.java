@@ -16,11 +16,11 @@ import android.widget.ImageView;
  */
 public class TareaAsyncTask extends AsyncTask<String, Integer, Bitmap>
 {
-    // referenecia de la imagen necesario para la descarga de la imagen
+    // referencia de la imagen necesario para la descarga de la imagen
     private final WeakReference imageRef;
 
     /**
-     * Contructor con la referencia de la imagen por parametro
+     * Constructor con la referencia de la imagen por parámetro
      *
      * @param imgAA ImageView
      */

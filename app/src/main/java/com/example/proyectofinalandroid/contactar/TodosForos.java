@@ -12,7 +12,7 @@ public class TodosForos extends FirebaseListAdapter<ChatMessage> {
     private FragmentForo activity;
 
     /**
-     * Contructor inicializando el contructor FirebaseListAdapter
+     * Constructor inicializando el Constructor FirebaseListAdapter
      *
      * @param activity
      * @param chats

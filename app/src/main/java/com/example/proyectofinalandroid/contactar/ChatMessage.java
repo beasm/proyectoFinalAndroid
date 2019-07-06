@@ -8,7 +8,7 @@ public class ChatMessage {
     private String messageUser;
     private long messageTime;
 
-    // contructor con los parametros
+    // Constructor con los parámetros
     public ChatMessage(String messageText, String messageUser) {
         this.messageText = messageText;
         this.messageUser = messageUser;
@@ -17,7 +17,7 @@ public class ChatMessage {
         messageTime = new Date().getTime();
     }
 
-    // contructor vacio
+    // Constructor vacío
     public ChatMessage(){
 
     }

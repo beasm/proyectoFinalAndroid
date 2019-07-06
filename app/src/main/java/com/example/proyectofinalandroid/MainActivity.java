@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this); // se asigna el escuchador
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) { // si el usuario no esta logeado
-            // Se inicia la activida de iniciar sesión o el registro
+            // Se inicia la actividad de iniciar sesión o el registro
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.LENGTH_LONG)
                     .show();
 
-            // se carga la pagina de Eventos
+            // se carga la página de Eventos
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, new FragmentEventos());
             ft.commit();
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * metodo que comprueba si los permisos para escribir en la memoria
+     * método que comprueba si los permisos para escribir en la memoria
      */
     private void checkSelfPermission() {
         if (ContextCompat.checkSelfPermission(this,
@@ -98,12 +98,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * metodo que comprueba si los permisos se han concedido
+     * método que comprueba si los permisos se han concedido
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
-            // Si se cancela la solicitud, el array estara vacio.
+            // Si se cancela la solicitud, el array estará vacío.
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // si se concede los permisos
                 Toast.makeText(this, "Gracias, permisos concedidos", Toast.LENGTH_LONG).show();
             } else { // si se deniega el permiso
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * metodo que controla el boton de la navegación
+     * método que controla el botón de la navegación
      */
     @Override
     public void onBackPressed() {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * metodo agrega elementos a la barra de opciones
+     * método agrega elementos a la barra de opciones
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * metodo gestiona los evento de seleccion de las opciones
+     * método gestiona los evento de selección de las opciones
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Maneja la navegacion del menu
+     * Maneja la navegación del menú
      *
      * @param item MenuItem
      */
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout); // se busca drawer_layout en el xml
-        drawer.closeDrawer(GravityCompat.START); // se cierra la navegacion
+        drawer.closeDrawer(GravityCompat.START); // se cierra la navegación
         return true;
     }
 

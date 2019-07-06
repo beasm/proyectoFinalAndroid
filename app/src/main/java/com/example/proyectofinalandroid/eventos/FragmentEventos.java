@@ -28,7 +28,7 @@ public class FragmentEventos extends Fragment {
     private ListView listOfEventos;
 
     /**
-     *  Contructor vacio es necesitado
+     *  Constructor vacío es necesitado
      */
     public FragmentEventos() {
     }
@@ -64,7 +64,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * Inicializamos y cargamos la pagina al crearse la vista
+     * Inicializamos y cargamos la página al crearse la vista
      *
      * @param inflater
      * @param container
@@ -81,13 +81,13 @@ public class FragmentEventos extends Fragment {
         // Obtenemos la referencia de la lista de los eventos
         listOfEventos = view.findViewById(R.id.list_of_eventos);
 
-        displayEventos(); // llamamos al metodo para muestrar la info de firebase
+        displayEventos(); // llamamos al método para mostrar la info de firebase
 
         // activamos un escuchador los eventos de on click de los componentes de la listas
         listOfEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // referencia de la posicion del elemento de la lista
+                // referencia de la posición del elemento de la lista
                 DatabaseReference itemRef = adapter.getRef(position);
 
                 // obtenemos la URL del evento en google maps y se lanza en el navegador
@@ -110,7 +110,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * Metodo del context el Fragment
+     * método del context el Fragment
      */
     @Override
     public void onAttach(Context context) {
@@ -118,7 +118,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * Metodo empezar el Fragment
+     * método empezar el Fragment
      */
     @Override
     public void onStart() {
@@ -127,7 +127,7 @@ public class FragmentEventos extends Fragment {
     }
 
     /**
-     * Metodo parar el Fragment
+     * método parar el Fragment
      */
     @Override
     public void onStop() {

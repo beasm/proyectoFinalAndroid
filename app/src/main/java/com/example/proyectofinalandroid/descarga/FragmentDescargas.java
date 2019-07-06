@@ -20,13 +20,13 @@ public class FragmentDescargas extends Fragment {
     private static final String NAME_FILE = "juego.apk";
 
     /**
-     *  Contructor vacio es necesitado
+     *  Constructor vacío es necesitado
      */
     public FragmentDescargas() {
     }
 
     /**
-     * Inicializamos y cargamos la pagina al crearse la vista
+     * Inicializamos y cargamos la página al crearse la vista
      *
      * @param inflater
      * @param container
